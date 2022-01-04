@@ -3,7 +3,6 @@ class Bar:
     def __init__(self, can, y):
         self.can = can
         self.can.update()
-        print(self.can.winfo_width())
         self.width = 100
         self.height = 10
         self.x = (self.can.winfo_width() - self.width) / 2
