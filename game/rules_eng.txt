@@ -1,0 +1,7 @@
+PONG 
+
+GAME GOAL
+
+
+GAMEPLAY
+- Move the bar thanks to the keyboard (left and right arrows).
