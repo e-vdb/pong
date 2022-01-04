@@ -1,4 +1,4 @@
-import tkinter as tk
+"""Define a class for players"""
 
 
 class Player:
