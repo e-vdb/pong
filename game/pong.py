@@ -3,6 +3,7 @@ from help_functions import about, printRules
 from ball import Ball
 from bar import Bar
 from player import Player
+import time
 
 Refresh_Sec = 0.005
 Ball_min_movement = 1
@@ -20,10 +21,14 @@ class Game(tk.Frame):
         self.player = Player()
 
     def make_widgets(self):
-        self.can = tk.Canvas(self, bg='black', height=600, width=500)
-        self.can.pack(side=tk.TOP, padx=5, pady=5)
         self.label = tk.Label(self, text="Click on Game to start a new game", fg="black", font='Helvetica 14')
         self.label.pack(side=tk.TOP)
+        self.countdown = tk.StringVar()
+        self.lbl_countdown = tk.Label(self, textvariable=self.countdown,  fg="black", font='Helvetica 20')
+        self.countdown.set("")
+        self.lbl_countdown.pack(side=tk.TOP)
+        self.can = tk.Canvas(self, bg='black', height=600, width=500)
+        self.can.pack(side=tk.TOP, padx=5, pady=5)
 
     def play(self):
         self.bar.center_bar()
@@ -36,13 +41,27 @@ class Game(tk.Frame):
             self.game_over()
 
     def new_game(self):
+        try:
+            self.can.delete(self.ball.ball)
+        except:
+            pass
         self.bar.center_bar()
-        self.player.enter_name()
+        self.player.can_play = True
         self.label.configure(text='Click on play to start the game.')
-        self.after(5000, self.play)
+        value_countdown = 5
+        self.countdown.set(str(value_countdown))
+        for i in range(5):
+            self.update()
+            value_countdown -= 1
+            self.countdown.set(str(value_countdown))
+            time.sleep(1)
+        self.countdown.set('')
+        self.play()
+
 
     def game_over(self):
-        self.label.configure(text='Game over. Click on play to try again.')
+        self.label.configure(text='Game over.')
+        self.player.can_play = False
 
 
 window = tk.Tk()
@@ -65,9 +84,6 @@ help_menu = tk.Menu(top, tearoff=False)
 top.add_cascade(label='Help', menu=help_menu)
 help_menu.add_command(label='How to play?', command=printRules)
 help_menu.add_command(label='About', command=about)
-
-btn = tk.Button(frame, text='Play', command=game.play)
-btn.pack()
 
 window.bind("<Left>", lambda event,x=-10: game.bar.move_left(event,x))
 window.bind("<Right>", lambda event,x=10: game.bar.move_right(event,x))
