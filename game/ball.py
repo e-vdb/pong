@@ -7,7 +7,7 @@ colors = ['red', 'green', 'yellow', 'blue']
 
 
 class Ball:
-    def __init__(self, can, bar, bar_IA, refresh_Sec=Refresh_Sec):
+    def __init__(self, can, bar, bar_IA, player, player_IA, refresh_Sec=Refresh_Sec):
         self.can = can
         self.refresh_Sec = refresh_Sec
         self.radius = 25
@@ -19,6 +19,8 @@ class Ball:
         self.color = colors[0]
         self.bar = bar
         self.bar_IA = bar_IA
+        self.player = player
+        self.player_IA = player_IA
 
     def reset(self):
         self.x = self.can.winfo_width()/2
@@ -54,8 +56,10 @@ class Ball:
                 self.shift_y = - self.shift_y
         elif y1 < 0:
             self.stop()
+            self.player.score += 1
         elif y2 > self.can.winfo_height():
             self.stop()
+            self.player_IA.score += 1
 
     def moving_bar_IA(self):
         if self.shift_x > 0:
