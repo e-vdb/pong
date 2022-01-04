@@ -1,7 +1,10 @@
-PONG 
+PONG
+
+Arcade video game that simulates table-tennis
 
 GAME GOAL
-
+Be the first to score 5.
 
 GAMEPLAY
-- Move the bar thanks to the keyboard (left and right arrows).
+- Move the paddle thanks to the keyboard (left and right arrows).
+
