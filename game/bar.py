@@ -1,5 +1,5 @@
 
-class Bar:
+class Paddle:
     def __init__(self, can, y):
         self.can = can
         self.can.update()
