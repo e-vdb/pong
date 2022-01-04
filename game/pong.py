@@ -1,7 +1,7 @@
 import tkinter as tk
 from help_functions import about, printRules
 from ball import Ball
-from bar import Bar
+from bar import Paddle
 from player import Player
 import time
 
@@ -16,8 +16,8 @@ class Game(tk.Frame):
         self.player = Player()
         self.player_IA = Player()
         self.make_widgets()
-        self.bar = Bar(self.can, 550)
-        self.bar_IA = Bar(self.can, 40)
+        self.bar = Paddle(self.can, 550)
+        self.bar_IA = Paddle(self.can, 40)
         self.bar_IA.center_bar()
         self.ball = Ball(self.can, self.bar, self.bar_IA, self.player, self.player_IA)
 
@@ -94,7 +94,8 @@ class Game(tk.Frame):
 
 
 window = tk.Tk()
-window.title("Moving ball")
+window.title("PONG")
+window.resizable(0, 0)
 frame = tk.Frame(window)
 frame.pack(side=tk.TOP)
 
