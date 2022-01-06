@@ -5,10 +5,6 @@ from bar import Paddle
 from player import Player
 import time
 
-Refresh_Sec = 0.005
-Ball_min_movement = 1
-colors = ['red', 'green', 'yellow', 'blue']
-
 
 class Game(tk.Frame):
     def __init__(self, parent=None, **kw):
